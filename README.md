@@ -10,4 +10,5 @@ Cláudio Jin - RM88249<br/>
 João Henrique - RM88822<br/>
 <br/>
 
-link do video: https://www.youtube.com/watch?v=gURU7N2yaqc
+link do video: https://www.youtube.com/watch?v=gURU7N2yaqc<br/>
+link do tinkercad: https://www.tinkercad.com/things/jUsMbQGNBdh
