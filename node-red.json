@@ -1,0 +1,306 @@
+[
+    {
+        "id": "f5b235ee65ee61ec",
+        "type": "inject",
+        "z": "75cf51e317a44a0f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "vaga",
+        "payload": "A",
+        "payloadType": "str",
+        "x": 270,
+        "y": 260,
+        "wires": [
+            [
+                "a42a5cf94628feb9"
+            ]
+        ]
+    },
+    {
+        "id": "1621f8df80b6034b",
+        "type": "inject",
+        "z": "75cf51e317a44a0f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "vaga",
+        "payload": "B",
+        "payloadType": "str",
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "a42a5cf94628feb9"
+            ]
+        ]
+    },
+    {
+        "id": "6cde19a26367fb5c",
+        "type": "inject",
+        "z": "75cf51e317a44a0f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "vaga",
+        "payload": "AB",
+        "payloadType": "str",
+        "x": 280,
+        "y": 380,
+        "wires": [
+            [
+                "a42a5cf94628feb9"
+            ]
+        ]
+    },
+    {
+        "id": "294fec4ed30ef351",
+        "type": "inject",
+        "z": "75cf51e317a44a0f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "vaga",
+        "payload": "X",
+        "payloadType": "str",
+        "x": 270,
+        "y": 440,
+        "wires": [
+            [
+                "a42a5cf94628feb9"
+            ]
+        ]
+    },
+    {
+        "id": "a42a5cf94628feb9",
+        "type": "mqtt out",
+        "z": "75cf51e317a44a0f",
+        "name": "mqtt vaga",
+        "topic": "vaga",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "627751513d0d2190",
+        "x": 540,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "96456b39e25008f8",
+        "type": "mqtt in",
+        "z": "75cf51e317a44a0f",
+        "name": "mqtt saida",
+        "topic": "vaga",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "8549a2838298f873",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 700,
+        "y": 360,
+        "wires": [
+            [
+                "b08fab6f41d34452"
+            ]
+        ]
+    },
+    {
+        "id": "48418f086ebd5deb",
+        "type": "aedes broker",
+        "z": "75cf51e317a44a0f",
+        "name": "",
+        "mqtt_port": 1883,
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "certname": "",
+        "keyname": "",
+        "dburl": "",
+        "usetls": false,
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "693ff1c6607c0b34",
+        "type": "ui_text",
+        "z": "75cf51e317a44a0f",
+        "group": "38e77401f672fe02",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Status Loja",
+        "label": "Status vagas:",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1090,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "78882dad54823b3d",
+        "type": "debug",
+        "z": "75cf51e317a44a0f",
+        "name": "retorno vaga",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "b08fab6f41d34452",
+        "type": "function",
+        "z": "75cf51e317a44a0f",
+        "name": "tratar mensagem",
+        "func": "if(msg.payload === \"A\"){\n    return { payload: \"Somente a vaga A disponível\"}\n} else if (msg.payload === \"B\"){\n    return { payload: \"Somente a vaga B disponível\" }\n} else if (msg.payload === \"AB\"){\n    return { payload: \"Ambas as vagas disponíveis\" }\n}else{\n    return { payload: \"Nenhuma vaga disponível\" }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 360,
+        "wires": [
+            [
+                "693ff1c6607c0b34",
+                "78882dad54823b3d"
+            ]
+        ]
+    },
+    {
+        "id": "627751513d0d2190",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "vaga@localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8549a2838298f873",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "vaga@localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "38e77401f672fe02",
+        "type": "ui_group",
+        "name": "Global Solution IOT",
+        "tab": "3be0fb35dd73f85d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3be0fb35dd73f85d",
+        "type": "ui_tab",
+        "name": "Garagem",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
